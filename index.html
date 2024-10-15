@@ -15,8 +15,8 @@
             font-family: 'Arial', sans-serif;
         }
         .container {
-            background-color: #ffffff;
-            color: #333;
+            background-color: #2c2c54; /* Fondo oscuro para el formulario */
+            color: #ffffff;
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
@@ -29,7 +29,7 @@
             margin-bottom: 20px;
         }
         h3 {
-            color: #4B0082; /* Títulos en morado oscuro */
+            color: #FFA500; /* Títulos en naranja */
             margin: 20px 0 10px;
         }
         label {
@@ -49,12 +49,12 @@
             margin-right: 10px;
         }
         button {
-            background-color: #4B0082;
+            background-color: #FFA500; /* Naranja */
             color: #ffffff;
             transition: background-color 0.3s, transform 0.3s;
         }
         button:hover {
-            background-color: #37176A;
+            background-color: #e68a00; /* Naranja más oscuro en hover */
             transform: translateY(-2px);
         }
         .hidden {
@@ -63,17 +63,12 @@
         .preview {
             margin-top: 20px;
             padding: 15px;
-            background-color: #f8f9fa;
+            background-color: #f8f9fa; /* Color claro para la vista previa */
             border-radius: 8px;
-            border: 1px solid #4B0082;
+            border: 1px solid #FFA500; /* Borde naranja */
         }
         .progress {
             height: 20px;
-            margin-bottom: 20px;
-        }
-        .theme-toggle {
-            display: flex;
-            justify-content: flex-end;
             margin-bottom: 20px;
         }
     </style>
@@ -82,15 +77,6 @@
 
     <div class="container">
         <h2><i class="fas fa-pencil-alt"></i> Cotización de Buffet y Catering</h2>
-        
-        <div class="theme-toggle">
-            <label for="themeSelect">Selecciona el tema:</label>
-            <select id="themeSelect" onchange="changeTheme()">
-                <option value="default">Por defecto</option>
-                <option value="dark">Oscuro</option>
-                <option value="light">Claro</option>
-            </select>
-        </div>
 
         <div class="progress">
             <div class="progress-bar progress-bar-striped progress-bar-animated" id="progressBar" style="width: 0%">Paso 1 de 3</div>
@@ -175,6 +161,58 @@
             </div>
 
             <h3>🍽️ Vajilla:</h3>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="copas" onchange="toggleCantidad('copasCantidad')">
+                <label class="form-check-label" for="copas"> Copas</label>
+            </div>
+            <div id="copasCantidad" class="hidden">
+                <label>Cantidad:</label>
+                <input type="number" class="form-control" placeholder="Cantidad" min="1"><br>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="vasos" onchange="toggleCantidad('vasosCantidad')">
+                <label class="form-check-label" for="vasos"> Vasos</label>
+            </div>
+            <div id="vasosCantidad" class="hidden">
+                <label>Cantidad:</label>
+                <input type="number" class="form-control" placeholder="Cantidad" min="1"><br>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="platosEntrada" onchange="toggleCantidad('platosEntradaCantidad')">
+                <label class="form-check-label" for="platosEntrada"> Platos de Entrada</label>
+            </div>
+            <div id="platosEntradaCantidad" class="hidden">
+                <label>Cantidad:</label>
+                <input type="number" class="form-control" placeholder="Cantidad" min="1"><br>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="platosBase" onchange="toggleCantidad('platosBaseCantidad')">
+                <label class="form-check-label" for="platosBase"> Platos de Base</label>
+            </div>
+            <div id="platosBaseCantidad" class="hidden">
+                <label>Cantidad:</label>
+                <input type="number" class="form-control" placeholder="Cantidad" min="1"><br>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="servilletas" onchange="toggleCantidad('servilletasCantidad')">
+                <label class="form-check-label" for="servilletas"> Servilletas de Tela</label>
+            </div>
+            <div id="servilletasCantidad" class="hidden">
+                <label>Cantidad:</label>
+                <input type="number" class="form-control" placeholder="Cantidad" min="1"><br>
+                <label>Color de la Servilleta:</label>
+                <input type="text" class="form-control" placeholder="Color"><br>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="jarras" onchange="toggleCantidad('jarrasCantidad')">
+                <label class="form-check-label" for="jarras"> Jarras</label>
+            </div>
+            <div id="jarrasCantidad" class="hidden">
+                <label>Cantidad:</label>
+                <input type="number" class="form-control" placeholder="Cantidad" min="1"><br>
+            </div>
+
+            <h3>👨‍🍳 Atención:</h3>
             <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="mozos" onchange="toggleMozos()">
                 <label class="form-check-label" for="mozos"> 👨‍🍳 Mozos</label>
