@@ -102,6 +102,19 @@
                 <div class="invalid-feedback">Por favor, ingrese un número de personas válido.</div>
             </div>
 
+            <h3>🕒 Horarios y Precios:</h3>
+            <div class="form-group">
+                <label for="precioPorPersona">💲 Precio por Persona (S/):</label>
+                <input type="number" class="form-control" id="precioPorPersona" name="precioPorPersona" onchange="calcularTotal()" placeholder="Ej: 50" min="1">
+            </div>
+
+            <button type="button" class="btn btn-primary" onclick="calcularTotal()">💵 Calcular Precio Total</button>
+
+            <div class="form-group">
+                <label for="precioTotal">💰 Precio Total (S/):</label>
+                <input type="text" class="form-control" id="precioTotal" name="precioTotal" readonly>
+            </div>
+
             <h3>🍽️ Atención:</h3>
             <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="mozos" onchange="toggleMozos()">
@@ -220,23 +233,10 @@
                     <label for="cantidadTiposBocaditos">Cantidad de Tipos de Bocaditos:</label>
                     <input type="number" class="form-control" id="cantidadTiposBocaditos" name="cantidadTiposBocaditos" min="1" onchange="generarCamposBocaditos()">
                 </div>
-                <button type="button" class="btn btn-secondary" onclick="agregarBocaditos()">Agregar Bocaditos</button>
+                <button type="button" class="btn btn-secondary" onclick="generarCamposBocaditos()">Agregar Bocaditos</button>
                 <div id="bocaditosGroup" class="bocaditos-group"></div>
             </div>
             
-            <h3>🕒 Horarios y Precios:</h3>
-            <div class="form-group">
-                <label for="precioPorPersona">💲 Precio por Persona (S/):</label>
-                <input type="number" class="form-control" id="precioPorPersona" name="precioPorPersona" onchange="calcularTotal()" placeholder="Ej: 50" min="1">
-            </div>
-            
-            <button type="button" class="btn btn-primary" onclick="calcularTotal()">💵 Calcular Precio Total</button>
-
-            <div class="form-group">
-                <label for="precioTotal">💰 Precio Total (S/):</label>
-                <input type="text" class="form-control" id="precioTotal" name="precioTotal" readonly>
-            </div>
-
             <button type="button" class="btn btn-success" onclick="generarCotizacion()">Generar Cotización</button>
 
             <div id="preview" class="preview hidden">
@@ -308,27 +308,6 @@
                     <input type="text" class="form-control" id="bocaditoNombre${i}" placeholder="Nombre del bocadito" required><br>
                 `;
                 bocaditosGroup.appendChild(bocaditoDiv);
-            }
-        }
-
-        function agregarBocaditos() {
-            const cantidadTipos = document.getElementById('cantidadTiposBocaditos').value;
-            const bocaditosGroup = document.getElementById('bocaditosGroup');
-            bocaditosGroup.innerHTML = ''; // Limpiar campos anteriores
-
-            for (let i = 1; i <= cantidadTipos; i++) {
-                const cantidad = document.getElementById(`bocaditoCantidad${i}`).value;
-                const nombre = document.getElementById(`bocaditoNombre${i}`).value;
-                if (cantidad && nombre) {
-                    // Crear campos para nombre y cantidad de bocaditos
-                    const bocaditoDiv = document.createElement('div');
-                    bocaditoDiv.innerHTML = `
-                        <label for="bocadito${i}">Bocadito ${i}:</label>
-                        <input type="number" class="form-control" id="bocaditoCantidad${i}" value="${cantidad}" placeholder="Cantidad de bocaditos" required min="1"><br>
-                        <input type="text" class="form-control" id="bocaditoNombre${i}" value="${nombre}" placeholder="Nombre del bocadito" required><br>
-                    `;
-                    bocaditosGroup.appendChild(bocaditoDiv);
-                }
             }
         }
 
