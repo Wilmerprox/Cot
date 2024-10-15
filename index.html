@@ -242,6 +242,7 @@
             <div id="preview" class="preview hidden">
                 <h3>Vista Previa de la Cotización</h3>
                 <pre id="cotizacionTexto"></pre>
+                <button type="button" class="btn btn-info" onclick="copiarCotizacion()">📋 Copiar Cotización</button>
             </div>
         </form>
     </div>
@@ -473,6 +474,13 @@
             const cotizacionTexto = document.getElementById('cotizacionTexto');
             cotizacionTexto.innerText = mensaje;
             previewDiv.classList.remove('hidden'); // Mostrar vista previa
+        }
+
+        function copiarCotizacion() {
+            const cotizacionTexto = document.getElementById('cotizacionTexto').innerText;
+            navigator.clipboard.writeText(cotizacionTexto).then(() => {
+                alert("¡Cotización copiada al portapapeles! Ahora puedes pegarla en WhatsApp.");
+            });
         }
     </script>
 </body>
