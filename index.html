@@ -262,22 +262,6 @@
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('fecha').setAttribute('min', today);
 
-        function changeTheme() {
-            const theme = document.getElementById('themeSelect').value;
-            const body = document.body;
-
-            if (theme === "dark") {
-                body.style.backgroundColor = "#333";
-                body.style.color = "#fff";
-            } else if (theme === "light") {
-                body.style.backgroundColor = "#f8f9fa";
-                body.style.color = "#333";
-            } else {
-                body.style.backgroundColor = "#4B0082"; /* Volver a fondo original */
-                body.style.color = "#fff";
-            }
-        }
-
         function toggleMozos() {
             const mozosDetails = document.getElementById('mozosDetails');
             mozosDetails.classList.toggle('hidden', !document.getElementById('mozos').checked);
