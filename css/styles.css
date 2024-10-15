@@ -1,0 +1,171 @@
+body {
+    background-color: #fff; /* Fondo blanco */
+    color: #333; /* Color de texto más oscuro */
+    font-family: 'Arial', sans-serif;
+    margin: 0; /* Elimina el margen por defecto */
+    padding: 0; /* Elimina el padding por defecto */
+    padding-top: 50px;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column; /* Alineación vertical */
+    justify-content: flex-start; /* Alineación superior */
+    align-items: center; /* Centrar horizontalmente */
+    padding-top: 20px; /* Espacio superior */
+}
+
+.logo-wrapper {
+    text-align: center; /* Centrar el logo */
+    margin-bottom: 20px; /* Espaciado debajo del logo */
+}
+
+.logo {
+    width: 100%; /* Ancho adaptable */
+    max-width: 600px; /* Ancho máximo del logo */
+    height: auto; /* Mantener la proporción del logo */
+}
+
+.container {
+    background-color: #2c2c54; /* Fondo oscuro para la app */
+    color: #ffffff;
+    padding: 20px; /* Espacio interno */
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    max-width: 90%; /* Ancho máximo del contenedor */
+    margin: 0 auto; /* Centrado horizontal */
+}
+
+h1 {
+    font-size: 2rem; /* Tamaño aumentado */
+    margin-bottom: 20px; /* Espaciado debajo del título */
+}
+
+p {
+    font-size: 1.2rem; /* Tamaño del texto */
+    margin-bottom: 20px; /* Espaciado debajo del párrafo */
+}
+
+.btn {
+    display: inline-block; /* Mostrar como bloque en línea */
+    background-color: #FFA500; /* Naranja */
+    color: #ffffff;
+    padding: 15px 30px; /* Espacio interno del botón */
+    font-size: 1.2rem; /* Tamaño de fuente */
+    border-radius: 8px; /* Bordes redondeados */
+    text-decoration: none; /* Sin subrayado */
+    transition: background-color 0.3s, transform 0.3s; /* Efectos de transición */
+    margin-top: 10px; /* Espacio arriba del botón */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+}
+
+.btn:hover {
+    background-color: #e68a00; /* Naranja más oscuro en hover */
+    transform: translateY(-2px); /* Elevación del botón */
+}
+
+/* Estilos para la cotización */
+.cotizacion-container {
+    background-color: #2c2c54; /* Fondo oscuro para el formulario */
+    color: #ffffff;
+    padding: 20px; /* Espacio interno */
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    max-width: 90%; /* Ancho máximo del contenedor */
+    margin: 20px auto; /* Centrado vertical y horizontal */
+}
+
+h2 {
+    color: #FFF; /* Naranja */
+    margin-bottom: 20px;
+    font-size: 2rem; /* Tamaño aumentado */
+}
+
+h3 {
+    color: #FFA500; /* Títulos en naranja */
+    margin: 20px 0 10px;
+    font-size: 1.5rem; /* Tamaño aumentado */
+}
+
+h4 {
+    color: #ffe400; /* Títulos en amarillo */
+    margin: 20px 0 10px;
+    font-size: 1.5rem; /* Tamaño aumentado */
+}
+
+label {
+    font-weight: bold;
+    font-size: 1.1rem; /* Tamaño de letra aumentado */
+}
+
+input[type="text"], input[type="number"], input[type="date"], input[type="time"], select {
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s;
+    font-size: 1.1rem; /* Tamaño de letra aumentado */
+    padding: 10px; /* Aumento de espacio interno */
+    width: 100%; /* Ancho completo */
+}
+
+input[type="text"]:focus, input[type="number"]:focus, input[type="date"]:focus, input[type="time"]:focus, select:focus {
+    border-color: #FFA500; /* Naranja en foco */
+    outline: none;
+}
+
+input[type="checkbox"] {
+    transform: scale(1.5);
+    margin-right: 10px;
+}
+
+button {
+    background-color: #FFA500; /* Naranja */
+    color: #ffffff;
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 1.2rem; /* Tamaño de letra aumentado */
+    padding: 10px; /* Aumento de espacio interno */
+    width: 100%; /* Botón de ancho completo */
+    margin: 10px 0; /* Espaciado entre botones */
+    border: none; /* Sin borde */
+    border-radius: 8px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar cursor a mano */
+}
+
+button:hover {
+    background-color: #e68a00; /* Naranja más oscuro en hover */
+    transform: translateY(-2px); /* Elevación del botón */
+}
+
+.hidden {
+    display: none;
+}
+
+.preview {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa; /* Color claro para la vista previa */
+    border-radius: 8px;
+    border: 1px solid #FFA500; /* Borde naranja */
+}
+
+.bocadito {
+    margin-bottom: 10px;
+}
+
+/* Media Queries para mejorar la responsividad */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.8rem; /* Tamaño de fuente para móviles */
+    }
+    h2 {
+        font-size: 1.5rem; /* Tamaño de fuente para móviles */
+    }
+    h3, h4 {
+        font-size: 1.3rem; /* Tamaño de fuente para móviles */
+    }
+    p {
+        font-size: 1rem; /* Tamaño de texto para móviles */
+    }
+    .btn {
+        font-size: 1rem; /* Tamaño de fuente del botón para móviles */
+    }
+}
