@@ -4,117 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Cotización de Buffet y Catering</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
             background-color: #4B0082; /* Fondo morado oscuro */
             color: #ffffff;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 150vh;
-            overflow: auto; /* Para evitar el desbordamiento */
         }
         .container {
             background-color: #ffffff;
             color: #333;
-            padding: 20px;
+            padding: 30px;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            max-width: 90%;
-            width: 400px; /* Ancho fijo para móviles */
-            transition: transform 0.3s;
-        }
-        .container:hover {
-            transform: scale(1.02);
-        }
-        .logo {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .logo img {
-            max-width: 100%;
-            height: auto;
+            max-width: 600px; /* Ancho máximo */
+            margin: 50px auto; /* Centrado vertical y horizontal */
         }
         h2 {
             text-align: center;
             color: #FFA500; /* Naranja */
-            font-size: 24px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
         h3 {
             color: #4B0082; /* Títulos en morado oscuro */
-            margin: 15px 0 10px;
-            font-size: 18px;
-            border-bottom: 2px solid #4B0082;
-            padding-bottom: 5px;
+            margin: 20px 0 10px;
         }
         label {
             font-weight: bold;
-            color: #4B0082; /* Color del texto de las etiquetas */
-            display: block;
-            margin: 10px 0 5px;
         }
         input[type="text"], input[type="number"], input[type="date"], input[type="time"] {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin: 5px 0 15px;
-            box-sizing: border-box;
-            border: 2px solid #4B0082;
             border-radius: 8px;
-            background-color: #F7F7F7;
-            color: #333;
-            font-size: 16px;
-            transition: border-color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        input[type="text"]:focus, input[type="number"]:focus, input[type="date"]:focus, input[type="time"]:focus {
-            border-color: #FFA500; /* Naranja */
-            outline: none;
-            box-shadow: 0 0 5px rgba(255, 165, 0, 0.5);
-        }
-        /* Estilos para los checkboxes */
         input[type="checkbox"] {
-            appearance: none;
-            -webkit-appearance: none;
-            background-color: #f0f0f0;
-            border: 2px solid #4B0082;
-            width: 30px; /* Aumentar tamaño */
-            height: 30px; /* Aumentar tamaño */
-            border-radius: 50%; /* Redondear */
-            position: relative;
-            cursor: pointer;
+            transform: scale(1.5);
             margin-right: 10px;
-            transition: background-color 0.3s, border-color 0.3s, transform 0.3s;
-        }
-        input[type="checkbox"]:checked {
-            background-color: #4B0082;
-            border-color: #4B0082;
-            transform: scale(1.1); /* Aumentar tamaño al marcar */
-        }
-        input[type="checkbox"]:checked::after {
-            content: '';
-            position: absolute;
-            left: 10px;
-            top: 6px;
-            width: 8px;
-            height: 14px;
-            border: solid white;
-            border-width: 0 3px 3px 0;
-            transform: rotate(45deg);
         }
         button {
-            width: 100%;
-            padding: 12px;
             background-color: #4B0082;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            font-size: 18px;
-            cursor: pointer;
+            color: #ffffff;
             transition: background-color 0.3s, transform 0.3s;
-            margin-top: 20px;
         }
         button:hover {
             background-color: #37176A;
@@ -123,165 +54,201 @@
         .hidden {
             display: none;
         }
-        .bocaditos-group {
-            margin-top: 10px;
+        .tooltip-inner {
+            background-color: #4B0082;
         }
-        .field-container {
-            margin-bottom: 20px;
-        }
-        /* Animaciones */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes slideDown {
-            from { transform: translateY(-10px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        .animated {
-            animation: fadeIn 0.5s ease;
+        .preview {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #4B0082;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="logo">
-            <svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 450 75"><image width="600" height="100" transform="scale(0.75)" xlink:href="data:image/png;base64,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"/></svg>
-        </div>
-
-        <h2>📝 Formulario de Cotización</h2>
+        <h2><i class="fas fa-pencil-alt"></i> Formulario de Cotización</h2>
     
         <form id="cotizacionForm">
-            <div class="field-container">
+            <div class="form-group">
                 <label for="nombre">Nombre del Cliente:</label>
-                <input type="text" id="nombre" name="nombre" required placeholder="Ej: Juan Pérez">
+                <input type="text" class="form-control" id="nombre" name="nombre" required placeholder="Ej: Juan Pérez">
+                <div class="invalid-feedback">Por favor, ingrese su nombre completo.</div>
             </div>
 
-            <div class="field-container">
+            <div class="form-group">
                 <label for="fecha">📅 Fecha del Evento:</label>
-                <input type="date" id="fecha" name="fecha" required min="" onchange="validarFecha()">
+                <input type="date" class="form-control" id="fecha" name="fecha" required min="" onchange="validarFecha()">
+                <div class="invalid-feedback">Por favor, seleccione una fecha válida.</div>
             </div>
 
-            <div class="field-container">
+            <div class="form-group">
                 <label for="hora">⏰ Hora del Evento:</label>
-                <input type="time" id="hora" name="hora" required step="900">
+                <input type="time" class="form-control" id="hora" name="hora" required step="900">
+                <div class="invalid-feedback">Por favor, seleccione la hora del evento.</div>
             </div>
 
-            <div class="field-container">
+            <div class="form-group">
                 <label for="lugar">📍 Lugar del Evento:</label>
-                <input type="text" id="lugar" name="lugar" required placeholder="Ej: Restaurante ABC">
+                <input type="text" class="form-control" id="lugar" name="lugar" required placeholder="Ej: Restaurante ABC">
+                <div class="invalid-feedback">Por favor, ingrese el lugar del evento.</div>
             </div>
 
-            <div class="field-container">
+            <div class="form-group">
                 <label for="personas">👥 Número de Personas:</label>
-                <input type="number" id="personas" name="personas" required onchange="calcularTotal()" placeholder="Ej: 50">
+                <input type="number" class="form-control" id="personas" name="personas" required onchange="calcularTotal()" placeholder="Ej: 50" min="1">
+                <div class="invalid-feedback">Por favor, ingrese un número de personas válido.</div>
             </div>
 
             <h3>🍽️ Atención:</h3>
-            <label><input type="checkbox" id="mozos" onchange="toggleMozos()"> 👨‍🍳 Mozos</label>
-            <div id="mozosDetails" class="hidden animated">
-                <div class="field-container">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="mozos" onchange="toggleMozos()">
+                <label class="form-check-label" for="mozos"> 👨‍🍳 Mozos</label>
+            </div>
+            <div id="mozosDetails" class="hidden">
+                <div class="form-group">
                     <label for="cantidadMozos">Cantidad de Mozos:</label>
-                    <input type="number" id="cantidadMozos" name="cantidadMozos">
+                    <input type="number" class="form-control" id="cantidadMozos" name="cantidadMozos" min="1">
                 </div>
-                <div class="field-container">
+                <div class="form-group">
                     <label for="horasMozos">Horas requeridas:</label>
-                    <input type="number" id="horasMozos" name="horasMozos">
+                    <input type="number" class="form-control" id="horasMozos" name="horasMozos" min="1">
                 </div>
             </div>
 
             <h3>🍽️ Vajilla:</h3>
-            <label><input type="checkbox" id="vajilla" onchange="toggleVajilla()"> Vajilla</label>
-            <div id="vajillaDetails" class="hidden animated">
-                <label><input type="checkbox" id="copas" onchange="toggleCantidad('copasCantidad')"> Copas</label>
-                <div id="copasCantidad" class="hidden">
-                    <label>Cantidad:</label>
-                    <input type="number" placeholder="Cantidad"><br>
-                </div>
-                <label><input type="checkbox" id="vasos" onchange="toggleCantidad('vasosCantidad')"> Vasos</label>
-                <div id="vasosCantidad" class="hidden">
-                    <label>Cantidad:</label>
-                    <input type="number" placeholder="Cantidad"><br>
-                </div>
-                <label><input type="checkbox" id="platosEntrada" onchange="toggleCantidad('platosEntradaCantidad')"> Platos de Entrada</label>
-                <div id="platosEntradaCantidad" class="hidden">
-                    <label>Cantidad:</label>
-                    <input type="number" placeholder="Cantidad"><br>
-                </div>
-                <label><input type="checkbox" id="platosBase" onchange="toggleCantidad('platosBaseCantidad')"> Platos de Base</label>
-                <div id="platosBaseCantidad" class="hidden">
-                    <label>Cantidad:</label>
-                    <input type="number" placeholder="Cantidad"><br>
-                </div>
-                <label><input type="checkbox" id="servilletas" onchange="toggleCantidad('servilletasCantidad')"> Servilletas de Tela</label>
-                <div id="servilletasCantidad" class="hidden">
-                    <label>Cantidad:</label>
-                    <input type="number" placeholder="Cantidad"><br>
-                    <label>Color de la Servilleta:</label>
-                    <input type="text" placeholder="Color"><br>
-                </div>
-                <label><input type="checkbox" id="jarras" onchange="toggleCantidad('jarrasCantidad')"> Jarras</label>
-                <div id="jarrasCantidad" class="hidden">
-                    <label>Cantidad:</label>
-                    <input type="number" placeholder="Cantidad"><br>
-                </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="copas" onchange="toggleCantidad('copasCantidad')">
+                <label class="form-check-label" for="copas"> Copas</label>
+            </div>
+            <div id="copasCantidad" class="hidden">
+                <label>Cantidad:</label>
+                <input type="number" class="form-control" placeholder="Cantidad" min="1"><br>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="vasos" onchange="toggleCantidad('vasosCantidad')">
+                <label class="form-check-label" for="vasos"> Vasos</label>
+            </div>
+            <div id="vasosCantidad" class="hidden">
+                <label>Cantidad:</label>
+                <input type="number" class="form-control" placeholder="Cantidad" min="1"><br>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="platosEntrada" onchange="toggleCantidad('platosEntradaCantidad')">
+                <label class="form-check-label" for="platosEntrada"> Platos de Entrada</label>
+            </div>
+            <div id="platosEntradaCantidad" class="hidden">
+                <label>Cantidad:</label>
+                <input type="number" class="form-control" placeholder="Cantidad" min="1"><br>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="platosBase" onchange="toggleCantidad('platosBaseCantidad')">
+                <label class="form-check-label" for="platosBase"> Platos de Base</label>
+            </div>
+            <div id="platosBaseCantidad" class="hidden">
+                <label>Cantidad:</label>
+                <input type="number" class="form-control" placeholder="Cantidad" min="1"><br>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="servilletas" onchange="toggleCantidad('servilletasCantidad')">
+                <label class="form-check-label" for="servilletas"> Servilletas de Tela</label>
+            </div>
+            <div id="servilletasCantidad" class="hidden">
+                <label>Cantidad:</label>
+                <input type="number" class="form-control" placeholder="Cantidad" min="1"><br>
+                <label>Color de la Servilleta:</label>
+                <input type="text" class="form-control" placeholder="Color"><br>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="jarras" onchange="toggleCantidad('jarrasCantidad')">
+                <label class="form-check-label" for="jarras"> Jarras</label>
+            </div>
+            <div id="jarrasCantidad" class="hidden">
+                <label>Cantidad:</label>
+                <input type="number" class="form-control" placeholder="Cantidad" min="1"><br>
             </div>
 
             <h3>🍽️ Comida:</h3>
-            <label><input type="checkbox" id="comida" onchange="toggleComida()"> Comida</label>
-            <div id="comidaDetails" class="hidden animated">
-                <label><input type="checkbox" id="entrada" onchange="toggleEntrada()"> Entrada</label>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="comida" onchange="toggleComida()">
+                <label class="form-check-label" for="comida"> Comida</label>
+            </div>
+            <div id="comidaDetails" class="hidden">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="entrada" onchange="toggleEntrada()">
+                    <label class="form-check-label" for="entrada"> Entrada</label>
+                </div>
                 <div id="entradaDetails" class="hidden">
                     <label for="nombreEntrada">Nombre del Plato:</label>
-                    <input type="text" id="nombreEntrada" name="nombreEntrada" placeholder="Ej: Ensalada César">
+                    <input type="text" class="form-control" id="nombreEntrada" name="nombreEntrada" placeholder="Ej: Ensalada César">
                 </div>
-                <label><input type="checkbox" id="segundoPlato" onchange="togglePlato()"> Segundo Plato</label>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="segundoPlato" onchange="togglePlato()">
+                    <label class="form-check-label" for="segundoPlato"> Segundo Plato</label>
+                </div>
                 <div id="segundoPlatoDetails" class="hidden">
                     <label for="nombreSegundoPlato">Nombre del Plato:</label>
-                    <input type="text" id="nombreSegundoPlato" name="nombreSegundoPlato" placeholder="Ej: Pollo a la Brasa">
+                    <input type="text" class="form-control" id="nombreSegundoPlato" name="nombreSegundoPlato" placeholder="Ej: Pollo a la Brasa">
                 </div>
-                <label><input type="checkbox" id="postre" onchange="togglePostre()"> Postre</label>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="postre" onchange="togglePostre()">
+                    <label class="form-check-label" for="postre"> Postre</label>
+                </div>
                 <div id="postreDetails" class="hidden">
                     <label for="nombrePostre">Nombre del Postre:</label>
-                    <input type="text" id="nombrePostre" name="nombrePostre" placeholder="Ej: Tarta de Chocolate">
+                    <input type="text" class="form-control" id="nombrePostre" name="nombrePostre" placeholder="Ej: Tarta de Chocolate">
                 </div>
-                <label><input type="checkbox" id="brindis" onchange="toggleBrindis()"> Brindis</label>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="brindis" onchange="toggleBrindis()">
+                    <label class="form-check-label" for="brindis"> Brindis</label>
+                </div>
                 <div id="brindisDetails" class="hidden">
                     <label for="nombreBrindis">Nombre del Cóctel:</label>
-                    <input type="text" id="nombreBrindis" name="nombreBrindis" placeholder="Ej: Sangría">
+                    <input type="text" class="form-control" id="nombreBrindis" name="nombreBrindis" placeholder="Ej: Sangría">
                 </div>
             </div>
 
             <h3>🥪 Bocaditos:</h3>
-            <label><input type="checkbox" id="bocaditos" onchange="toggleBocaditos()"> Bocaditos</label>
-            <div id="bocaditosDetails" class="hidden animated">
-                <div class="field-container">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="bocaditos" onchange="toggleBocaditos()">
+                <label class="form-check-label" for="bocaditos"> Bocaditos</label>
+            </div>
+            <div id="bocaditosDetails" class="hidden">
+                <div class="form-group">
                     <label for="cantidadTiposBocaditos">Cantidad de Tipos de Bocaditos:</label>
-                    <input type="number" id="cantidadTiposBocaditos" name="cantidadTiposBocaditos" min="1" onchange="generarCamposBocaditos()">
+                    <input type="number" class="form-control" id="cantidadTiposBocaditos" name="cantidadTiposBocaditos" min="1" onchange="generarCamposBocaditos()">
                 </div>
-                <button type="button" onclick="agregarBocaditos()">Agregar Bocaditos</button>
-                <!-- Aquí aparecerán los campos para los bocaditos -->
+                <button type="button" class="btn btn-secondary" onclick="agregarBocaditos()">Agregar Bocaditos</button>
                 <div id="bocaditosGroup" class="bocaditos-group"></div>
             </div>
             
             <h3>🕒 Horarios y Precios:</h3>
-            <div class="field-container">
+            <div class="form-group">
                 <label for="precioPorPersona">💲 Precio por Persona (S/):</label>
-                <input type="number" id="precioPorPersona" name="precioPorPersona" onchange="calcularTotal()" placeholder="Ej: 50">
+                <input type="number" class="form-control" id="precioPorPersona" name="precioPorPersona" onchange="calcularTotal()" placeholder="Ej: 50" min="1">
             </div>
             
-            <button type="button" onclick="calcularTotal()">💵 Calcular Precio Total</button>
+            <button type="button" class="btn btn-primary" onclick="calcularTotal()">💵 Calcular Precio Total</button>
 
-            <div class="field-container">
+            <div class="form-group">
                 <label for="precioTotal">💰 Precio Total (S/):</label>
-                <input type="text" id="precioTotal" name="precioTotal" readonly>
+                <input type="text" class="form-control" id="precioTotal" name="precioTotal" readonly>
             </div>
 
-            <button type="button" onclick="generarCotizacion()">Generar Cotización</button>
+            <button type="button" class="btn btn-success" onclick="generarCotizacion()">Generar Cotización</button>
+
+            <div id="preview" class="preview hidden">
+                <h3>Vista Previa de la Cotización</h3>
+                <pre id="cotizacionTexto"></pre>
+            </div>
         </form>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('fecha').setAttribute('min', today);
@@ -289,11 +256,6 @@
         function toggleMozos() {
             const mozosDetails = document.getElementById('mozosDetails');
             mozosDetails.classList.toggle('hidden', !document.getElementById('mozos').checked);
-        }
-
-        function toggleVajilla() {
-            const vajillaDetails = document.getElementById('vajillaDetails');
-            vajillaDetails.classList.toggle('hidden', !document.getElementById('vajilla').checked);
         }
 
         function toggleCantidad(cantidadId) {
@@ -329,7 +291,6 @@
         function toggleBocaditos() {
             const bocaditosDetails = document.getElementById('bocaditosDetails');
             bocaditosDetails.classList.toggle('hidden', !document.getElementById('bocaditos').checked);
-            document.getElementById('bocaditosGroup').innerHTML = ''; // Limpiar los campos si se desactiva
         }
 
         function generarCamposBocaditos() {
@@ -342,8 +303,8 @@
                 const bocaditoDiv = document.createElement('div');
                 bocaditoDiv.innerHTML = `
                     <label for="bocadito${i}">Bocadito ${i}:</label>
-                    <input type="number" id="bocaditoCantidad${i}" placeholder="Cantidad de bocaditos" required><br>
-                    <input type="text" id="bocaditoNombre${i}" placeholder="Nombre del bocadito" required><br><br>
+                    <input type="number" class="form-control" id="bocaditoCantidad${i}" placeholder="Cantidad de bocaditos" required min="1"><br>
+                    <input type="text" class="form-control" id="bocaditoNombre${i}" placeholder="Nombre del bocadito" required><br>
                 `;
                 bocaditosGroup.appendChild(bocaditoDiv);
             }
@@ -362,8 +323,8 @@
                     const bocaditoDiv = document.createElement('div');
                     bocaditoDiv.innerHTML = `
                         <label for="bocadito${i}">Bocadito ${i}:</label>
-                        <input type="number" id="bocaditoCantidad${i}" value="${cantidad}" placeholder="Cantidad de bocaditos" required><br>
-                        <input type="text" id="bocaditoNombre${i}" value="${nombre}" placeholder="Nombre del bocadito" required><br><br>
+                        <input type="number" class="form-control" id="bocaditoCantidad${i}" value="${cantidad}" placeholder="Cantidad de bocaditos" required min="1"><br>
+                        <input type="text" class="form-control" id="bocaditoNombre${i}" value="${nombre}" placeholder="Nombre del bocadito" required><br>
                     `;
                     bocaditosGroup.appendChild(bocaditoDiv);
                 }
@@ -373,6 +334,13 @@
         function calcularTotal() {
             const personas = document.getElementById('personas').value;
             const precioPorPersona = document.getElementById('precioPorPersona').value;
+
+            // Validar campos antes de calcular
+            if (!personas || !precioPorPersona) {
+                alert("Por favor, complete los campos de Número de Personas y Precio por Persona.");
+                return;
+            }
+
             const precioTotal = personas * precioPorPersona;
             document.getElementById('precioTotal').value = precioTotal || 0;
         }
@@ -457,33 +425,30 @@
                 mensaje += `🍸 Brindis con: ${nombreBrindis}.\n`;
             }
 
-            if (document.getElementById('vajilla').checked) {
-                mensaje += `🍽️ Vajilla solicitada:\n`;
-                if (document.getElementById('copas').checked) {
-                    const cantidadCopas = document.getElementById('copasCantidad').querySelector('input').value;
-                    mensaje += `- ${cantidadCopas} Copas.\n`;
-                }
-                if (document.getElementById('vasos').checked) {
-                    const cantidadVasos = document.getElementById('vasosCantidad').querySelector('input').value;
-                    mensaje += `- ${cantidadVasos} Vasos.\n`;
-                }
-                if (document.getElementById('platosEntrada').checked) {
-                    const cantidadPlatosEntrada = document.getElementById('platosEntradaCantidad').querySelector('input').value;
-                    mensaje += `- ${cantidadPlatosEntrada} Platos de Entrada.\n`;
-                }
-                if (document.getElementById('platosBase').checked) {
-                    const cantidadPlatosBase = document.getElementById('platosBaseCantidad').querySelector('input').value;
-                    mensaje += `- ${cantidadPlatosBase} Platos Base.\n`;
-                }
-                if (document.getElementById('servilletas').checked) {
-                    const cantidadServilletas = document.getElementById('servilletasCantidad').querySelector('input').value;
-                    const colorServilletas = document.getElementById('servilletasCantidad').querySelector('input[type="text"]').value;
-                    mensaje += `- ${cantidadServilletas} Servilletas de Tela (Color: ${colorServilletas}).\n`;
-                }
-                if (document.getElementById('jarras').checked) {
-                    const cantidadJarras = document.getElementById('jarrasCantidad').querySelector('input').value;
-                    mensaje += `- ${cantidadJarras} Jarras.\n`;
-                }
+            if (document.getElementById('copas').checked) {
+                const cantidadCopas = document.getElementById('copasCantidad').querySelector('input').value;
+                mensaje += `- ${cantidadCopas} Copas.\n`;
+            }
+            if (document.getElementById('vasos').checked) {
+                const cantidadVasos = document.getElementById('vasosCantidad').querySelector('input').value;
+                mensaje += `- ${cantidadVasos} Vasos.\n`;
+            }
+            if (document.getElementById('platosEntrada').checked) {
+                const cantidadPlatosEntrada = document.getElementById('platosEntradaCantidad').querySelector('input').value;
+                mensaje += `- ${cantidadPlatosEntrada} Platos de Entrada.\n`;
+            }
+            if (document.getElementById('platosBase').checked) {
+                const cantidadPlatosBase = document.getElementById('platosBaseCantidad').querySelector('input').value;
+                mensaje += `- ${cantidadPlatosBase} Platos Base.\n`;
+            }
+            if (document.getElementById('servilletas').checked) {
+                const cantidadServilletas = document.getElementById('servilletasCantidad').querySelector('input').value;
+                const colorServilletas = document.getElementById('servilletasCantidad').querySelector('input[type="text"]').value;
+                mensaje += `- ${cantidadServilletas} Servilletas de Tela (Color: ${colorServilletas}).\n`;
+            }
+            if (document.getElementById('jarras').checked) {
+                const cantidadJarras = document.getElementById('jarrasCantidad').querySelector('input').value;
+                mensaje += `- ${cantidadJarras} Jarras.\n`;
             }
 
             if (document.getElementById('bocaditos').checked) {
@@ -503,9 +468,11 @@
             mensaje += `🔔 El restante (S/${restante}) se cancela el día del evento.\n`;
             mensaje += `✨ Puedes realizar el adelanto mediante Yape al 972480092. ¡Gracias por tu confianza!\n\n`;
 
-            navigator.clipboard.writeText(mensaje).then(() => {
-                alert("¡Cotización copiada al portapapeles! Ahora puedes pegarla en WhatsApp.");
-            });
+            // Mostrar vista previa
+            const previewDiv = document.getElementById('preview');
+            const cotizacionTexto = document.getElementById('cotizacionTexto');
+            cotizacionTexto.innerText = mensaje;
+            previewDiv.classList.remove('hidden'); // Mostrar vista previa
         }
     </script>
 </body>
