@@ -341,35 +341,6 @@
             const precioPorPersona = document.getElementById('precioPorPersona').value;
             const precioTotal = document.getElementById('precioTotal').value;
 
-            // Validaciones
-            if (!nombre) {
-                alert("Por favor, ingrese el nombre del cliente.");
-                return;
-            }
-            if (!fecha) {
-                alert("Por favor, seleccione la fecha del evento.");
-                return;
-            }
-            if (!hora) {
-                alert("Por favor, seleccione la hora del evento.");
-                return;
-            }
-            if (!lugar) {
-                alert("Por favor, ingrese el lugar del evento.");
-                return;
-            }
-            if (!personas) {
-                alert("Por favor, ingrese el número de personas.");
-                return;
-            }
-            if (!precioPorPersona) {
-                alert("Por favor, ingrese el precio por persona.");
-                return;
-            }
-
-            const adelanto = (precioTotal * 0.6).toFixed(2);
-            const restante = (precioTotal - adelanto).toFixed(2);
-
             let mensaje = `Cotización para ${nombre}:\n\n`;
             mensaje += `📅 Fecha del evento: ${fecha}\n`;
             mensaje += `⏰ Hora del evento: ${hora}\n`;
@@ -440,10 +411,6 @@
                     mensaje += `- ${cantidad} ${nombre}\n`;
                 }
             }
-
-            mensaje += `\n💵 Para reservar tu fecha, debes adelantar el 60%: S/${adelanto}\n`;
-            mensaje += `🔔 El restante (S/${restante}) se cancela el día del evento.\n`;
-            mensaje += `✨ Puedes realizar el adelanto mediante Yape al 972480092. ¡Gracias por tu confianza!\n\n`;
 
             // Mostrar vista previa
             const previewDiv = document.getElementById('preview');
