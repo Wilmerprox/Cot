@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Cotización de Buffet y Catering</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #4B0082; /* Fondo morado oscuro */
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            margin-top: 20px; /* Espacio para que el primer campo se vea bien */
+            width: 100%;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo img {
+            max-width: 100%;
+            height: auto;
+        }
+        h2 {
+            text-align: center;
+            color: #4B0082; /* Título en morado oscuro */
+        }
+        h3 {
+            color: #4B0082; /* Subtítulos en morado oscuro */
+            margin-bottom: 10px;
+        }
+        label {
+            font-weight: bold;
+            color: #4B0082; /* Color del texto de las etiquetas */
+        }
+        input[type="text"], input[type="number"], input[type="date"], input[type="time"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid #4B0082;
+            border-radius: 5px;
+            background-color: #F0F0F0;
+            color: #333;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4B0082;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #37176A;
+        }
+        .hidden {
+            display: none;
+        }
+        .bocaditos-group {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo">
+            <!-- Inserta la URL de tu logo en el src de la imagen -->
+            <img src="ruta_a_tu_logo.png" alt="Logo del Buffet" width="600" height="100">
+        </div>
+
+        <h2>Formulario de Cotización</h2>
+    
+        <form id="cotizacionForm">
+            <label for="nombre">Nombre del Cliente:</label>
+            <input type="text" id="nombre" name="nombre" required><br><br>
+            
+            <label for="fecha">Fecha del Evento:</label>
+            <input type="date" id="fecha" name="fecha" required min="" onchange="validarFecha()"><br><br>
+            
+            <label for="hora">Hora del Evento:</label>
+            <input type="time" id="hora" name="hora" required step="900"><br><br>
+
+            <label for="lugar">Lugar del Evento:</label>
+            <input type="text" id="lugar" name="lugar" required><br><br>
+
+            <label for="personas">Número de Personas:</label>
+            <input type="number" id="personas" name="personas" required onchange="calcularTotal()"><br><br>
+
+            <!-- Subtítulo para la sección de atención (mozos) -->
+            <h3>Atención:</h3>
+            <label><input type="checkbox" id="mozos" onchange="toggleMozos()"> Mozos</label><br>
+            <div id="mozosDetails" class="hidden">
+                <label for="cantidadMozos">Cantidad de Mozos:</label>
+                <input type="number" id="cantidadMozos" name="cantidadMozos"><br>
+                <label for="horasMozos">Horas requeridas:</label>
+                <input type="number" id="horasMozos" name="horasMozos"><br>
+            </div>
+
+            <!-- Subtítulo para la sección de vajilla -->
+            <h3>Vajilla:</h3>
+            <label><input type="checkbox" id="vajilla" onchange="toggleVajilla()"> Vajilla</label><br>
+            <div id="vajillaDetails" class="hidden">
+                <label><input type="checkbox" id="copas" onchange="toggleCantidad('copasCantidad')"> Copas</label>
+                <div id="copasCantidad" class="hidden">
+                    <label>Cantidad:</label>
+                    <input type="number" placeholder="Cantidad"><br>
+                </div>
+                <label><input type="checkbox" id="vasos" onchange="toggleCantidad('vasosCantidad')"> Vasos</label>
+                <div id="vasosCantidad" class="hidden">
+                    <label>Cantidad:</label>
+                    <input type="number" placeholder="Cantidad"><br>
+                </div>
+                <label><input type="checkbox" id="platosEntrada" onchange="toggleCantidad('platosEntradaCantidad')"> Platos de Entrada</label>
+                <div id="platosEntradaCantidad" class="hidden">
+                    <label>Cantidad:</label>
+                    <input type="number" placeholder="Cantidad"><br>
+                </div>
+                <label><input type="checkbox" id="platosBase" onchange="toggleCantidad('platosBaseCantidad')"> Platos de Base</label>
+                <div id="platosBaseCantidad" class="hidden">
+                    <label>Cantidad:</label>
+                    <input type="number" placeholder="Cantidad"><br>
+                </div>
+                <label><input type="checkbox" id="servilletas" onchange="toggleCantidad('servilletasCantidad')"> Servilletas de Tela</label>
+                <div id="servilletasCantidad" class="hidden">
+                    <label>Cantidad:</label>
+                    <input type="number" placeholder="Cantidad"><br>
+                    <label>Color de la Servilleta:</label>
+                    <input type="text" placeholder="Color"><br>
+                </div>
+                <label><input type="checkbox" id="jarras" onchange="toggleCantidad('jarrasCantidad')"> Jarras</label>
+                <div id="jarrasCantidad" class="hidden">
+                    <label>Cantidad:</label>
+                    <input type="number" placeholder="Cantidad"><br>
+                </div>
+            </div>
+
+            <!-- Subtítulo para la sección de comida -->
+            <h3>Comida:</h3>
+            <label><input type="checkbox" id="comida" onchange="toggleComida()"> Comida</label><br>
+            <div id="comidaDetails" class="hidden">
+                <label><input type="checkbox" id="entrada" onchange="toggleEntrada()"> Entrada</label>
+                <div id="entradaDetails" class="hidden">
+                    <label for="nombreEntrada">Nombre del Plato:</label>
+                    <input type="text" id="nombreEntrada" name="nombreEntrada"><br>
+                </div>
+                <label><input type="checkbox" id="segundoPlato" onchange="togglePlato()"> Segundo Plato</label>
+                <div id="segundoPlatoDetails" class="hidden">
+                    <label for="nombreSegundoPlato">Nombre del Plato:</label>
+                    <input type="text" id="nombreSegundoPlato" name="nombreSegundoPlato"><br>
+                </div>
+                <label><input type="checkbox" id="postre" onchange="togglePostre()"> Postre</label>
+                <div id="postreDetails" class="hidden">
+                    <label for="nombrePostre">Nombre del Postre:</label>
+                    <input type="text" id="nombrePostre" name="nombrePostre"><br>
+                </div>
+                <label><input type="checkbox" id="brindis" onchange="toggleBrindis()"> Brindis</label>
+                <div id="brindisDetails" class="hidden">
+                    <label for="nombreBrindis">Nombre del Cóctel:</label>
+                    <input type="text" id="nombreBrindis" name="nombreBrindis"><br>
+                </div>
+            </div>
+
+            <!-- Subtítulo para la sección de bocaditos -->
+            <h3>Bocaditos:</h3>
+            <label><input type="checkbox" id="bocaditos" onchange="toggleBocaditos()"> Bocaditos</label><br>
+            <div id="bocaditosDetails" class="hidden">
+                <label for="cantidadTiposBocaditos">Cantidad de Tipos de Bocaditos:</label>
+                <input type="number" id="cantidadTiposBocaditos" name="cantidadTiposBocaditos" min="1" onchange="generarCamposBocaditos()"><br>
+                
+                <!-- Aquí aparecerán los campos para los bocaditos -->
+                <div id="bocaditosGroup" class="bocaditos-group"></div>
+            </div>
+            
+            <h3>Horarios y Precios:</h3>
+            <label for="precioPorPersona">Precio por Persona (S/):</label>
+            <input type="number" id="precioPorPersona" name="precioPorPersona" onchange="calcularTotal()"><br><br>
+            
+            <label for="precioTotal">Precio Total (S/):</label>
+            <input type="text" id="precioTotal" name="precioTotal" readonly><br><br>
+
+            <button type="button" onclick="generarCotizacion()">Generar Cotización</button>
+        </form>
+    </div>
+
+    <script>
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('fecha').setAttribute('min', today);
+
+        function toggleMozos() {
+            const mozosDetails = document.getElementById('mozosDetails');
+            mozosDetails.classList.toggle('hidden', !document.getElementById('mozos').checked);
+        }
+
+        function toggleVajilla() {
+            const vajillaDetails = document.getElementById('vajillaDetails');
+            vajillaDetails.classList.toggle('hidden', !document.getElementById('vajilla').checked);
+        }
+
+        function toggleCantidad(cantidadId) {
+            const cantidadDiv = document.getElementById(cantidadId);
+            cantidadDiv.classList.toggle('hidden', !document.getElementById(cantidadId.replace('Cantidad', '')).checked);
+        }
+
+        function toggleComida() {
+            const comidaDetails = document.getElementById('comidaDetails');
+            comidaDetails.classList.toggle('hidden', !document.getElementById('comida').checked);
+        }
+
+        function toggleEntrada() {
+            const entradaDetails = document.getElementById('entradaDetails');
+            entradaDetails.classList.toggle('hidden', !document.getElementById('entrada').checked);
+        }
+
+        function togglePlato() {
+            const platoDetails = document.getElementById('segundoPlatoDetails');
+            platoDetails.classList.toggle('hidden', !document.getElementById('segundoPlato').checked);
+        }
+
+        function togglePostre() {
+            const postreDetails = document.getElementById('postreDetails');
+            postreDetails.classList.toggle('hidden', !document.getElementById('postre').checked);
+        }
+
+        function toggleBrindis() {
+            const brindisDetails = document.getElementById('brindisDetails');
+            brindisDetails.classList.toggle('hidden', !document.getElementById('brindis').checked);
+        }
+
+        function toggleBocaditos() {
+            const bocaditosDetails = document.getElementById('bocaditosDetails');
+            bocaditosDetails.classList.toggle('hidden', !document.getElementById('bocaditos').checked);
+            document.getElementById('bocaditosGroup').innerHTML = ''; // Limpiar los campos si se desactiva
+        }
+
+        function generarCamposBocaditos() {
+            const cantidadTipos = document.getElementById('cantidadTiposBocaditos').value;
+            const bocaditosGroup = document.getElementById('bocaditosGroup');
+            bocaditosGroup.innerHTML = ''; // Limpiar campos anteriores
+
+            for (let i = 1; i <= cantidadTipos; i++) {
+                // Crear campos para nombre y cantidad de bocaditos
+                const bocaditoDiv = document.createElement('div');
+                bocaditoDiv.innerHTML = `
+                    <label for="bocadito${i}">Bocadito ${i}:</label>
+                    <input type="number" id="bocaditoCantidad${i}" placeholder="Cantidad de bocaditos"><br>
+                    <input type="text" id="bocaditoNombre${i}" placeholder="Nombre del bocadito"><br><br>
+                `;
+                bocaditosGroup.appendChild(bocaditoDiv);
+            }
+        }
+
+        function calcularTotal() {
+            const personas = document.getElementById('personas').value;
+            const precioPorPersona = document.getElementById('precioPorPersona').value;
+            const precioTotal = personas * precioPorPersona;
+            document.getElementById('precioTotal').value = precioTotal || 0;
+        }
+
+        function validarFecha() {
+            const fechaInput = document.getElementById('fecha');
+            const fechaSeleccionada = new Date(fechaInput.value);
+            const fechaActual = new Date();
+            if (fechaSeleccionada < fechaActual) {
+                alert("La fecha seleccionada no puede ser anterior a la fecha actual.");
+                fechaInput.value = "";
+            }
+        }
+
+        function generarCotizacion() {
+            const nombre = document.getElementById('nombre').value;
+            const fecha = document.getElementById('fecha').value;
+            const hora = document.getElementById('hora').value;
+            const lugar = document.getElementById('lugar').value;
+            const personas = document.getElementById('personas').value;
+            const precioPorPersona = document.getElementById('precioPorPersona').value;
+            const precioTotal = document.getElementById('precioTotal').value;
+            const adelanto = (precioTotal * 0.6).toFixed(2);
+            const restante = (precioTotal - adelanto).toFixed(2);
+
+            let mensaje = `Ya está lista tu cotización, ${nombre}:\n\n`;
+            mensaje += `📅 Fecha del evento: ${fecha}\n`;
+            mensaje += `⏰ Hora del evento: ${hora}\n`;
+            mensaje += `📍 Lugar del evento: ${lugar}\n`;
+            mensaje += `Servicios solicitados:\n`;
+
+            if (document.getElementById('mozos').checked) {
+                const cantidadMozos = document.getElementById('cantidadMozos').value;
+                const horasMozos = document.getElementById('horasMozos').value;
+                mensaje += `👨‍🍳 Mozos: ${cantidadMozos} por ${horasMozos} horas.\n`;
+            }
+
+            if (document.getElementById('entrada').checked) {
+                const nombreEntrada = document.getElementById('nombreEntrada').value;
+                mensaje += `🍽️ Entrada: ${nombreEntrada}.\n`;
+            }
+
+            if (document.getElementById('segundoPlato').checked) {
+                const nombreSegundoPlato = document.getElementById('nombreSegundoPlato').value;
+                mensaje += `🍽️ Segundo Plato: ${nombreSegundoPlato}.\n`;
+            }
+
+            if (document.getElementById('postre').checked) {
+                const nombrePostre = document.getElementById('nombrePostre').value;
+                mensaje += `🍰 Postre: ${nombrePostre}.\n`;
+            }
+
+            if (document.getElementById('brindis').checked) {
+                const nombreBrindis = document.getElementById('nombreBrindis').value;
+                mensaje += `🍸 Brindis con: ${nombreBrindis}.\n`;
+            }
+
+            if (document.getElementById('vajilla').checked) {
+                mensaje += `🍽️ Vajilla solicitada:\n`;
+                if (document.getElementById('copas').checked) {
+                    const cantidadCopas = document.getElementById('copasCantidad').querySelector('input').value;
+                    mensaje += `- ${cantidadCopas} Copas.\n`;
+                }
+                if (document.getElementById('vasos').checked) {
+                    const cantidadVasos = document.getElementById('vasosCantidad').querySelector('input').value;
+                    mensaje += `- ${cantidadVasos} Vasos.\n`;
+                }
+                if (document.getElementById('platosEntrada').checked) {
+                    const cantidadPlatosEntrada = document.getElementById('platosEntradaCantidad').querySelector('input').value;
+                    mensaje += `- ${cantidadPlatosEntrada} Platos de Entrada.\n`;
+                }
+                if (document.getElementById('platosBase').checked) {
+                    const cantidadPlatosBase = document.getElementById('platosBaseCantidad').querySelector('input').value;
+                    mensaje += `- ${cantidadPlatosBase} Platos Base.\n`;
+                }
+                if (document.getElementById('servilletas').checked) {
+                    const cantidadServilletas = document.getElementById('servilletasCantidad').querySelector('input').value;
+                    const colorServilletas = document.getElementById('servilletasCantidad').querySelector('input[type="text"]').value;
+                    mensaje += `- ${cantidadServilletas} Servilletas de Tela (Color: ${colorServilletas}).\n`;
+                }
+                if (document.getElementById('jarras').checked) {
+                    const cantidadJarras = document.getElementById('jarrasCantidad').querySelector('input').value;
+                    mensaje += `- ${cantidadJarras} Jarras.\n`;
+                }
+            }
+
+            if (document.getElementById('bocaditos').checked) {
+                mensaje += `🍢 Bocaditos:\n`;
+                const cantidadTipos = document.getElementById('cantidadTiposBocaditos').value;
+                for (let i = 1; i <= cantidadTipos; i++) {
+                    const cantidad = document.getElementById(`bocaditoCantidad${i}`).value;
+                    const nombre = document.getElementById(`bocaditoNombre${i}`).value;
+                    mensaje += `- ${cantidad} ${nombre}\n`;
+                }
+            }
+
+            mensaje += `\nNúmero de personas: ${personas}\n`;
+            mensaje += `💲 Precio por persona: S/${precioPorPersona}\n`;
+            mensaje += `💰 Costo total de inversión: S/${precioTotal}\n`;
+            mensaje += `💵 Para reservar tu fecha, debes adelantar el 60%: S/${adelanto}\n`;
+            mensaje += `🔔 El restante (S/${restante}) se cancela el día del evento.\n`;
+            mensaje += `✨ Puedes realizar el adelanto mediante Yape al 972480092. ¡Gracias por tu confianza!\n\n`;
+
+            navigator.clipboard.writeText(mensaje).then(() => {
+                alert("¡Cotización copiada al portapapeles! Ahora puedes pegarla en WhatsApp.");
+            });
+        }
+    </script>
+</body>
+</html>
