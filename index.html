@@ -69,10 +69,10 @@
 <body>
 
     <div class="container">
-        <h2><i class="fas fa-pencil-alt"></i> Formulario de Cotización</h2>
+        <h2><i class="fas fa-pencil-alt"></i> Cotización de Buffet y Catering</h2>
     
         <form id="cotizacionForm">
-            <h3>🗓️ Información del Evento:</h3>
+            <h3>🗓️ Paso 1: Información del Evento</h3>
             <div class="form-group">
                 <label for="nombre">Nombre del Cliente:</label>
                 <input type="text" class="form-control" id="nombre" name="nombre" required placeholder="Ej: Juan Pérez">
@@ -94,7 +94,7 @@
                 <div class="invalid-feedback">Por favor, ingrese el lugar del evento.</div>
             </div>
 
-            <h3>👥 Detalles de la Cotización:</h3>
+            <h3>👥 Paso 2: Detalles de la Cotización</h3>
             <div class="form-group">
                 <label for="personas">Número de Personas:</label>
                 <input type="number" class="form-control" id="personas" name="personas" required onchange="calcularTotal()" placeholder="Ej: 50" min="1">
@@ -111,7 +111,7 @@
                 <input type="text" class="form-control" id="precioTotal" name="precioTotal" readonly>
             </div>
 
-            <h3>🍽️ Atención:</h3>
+            <h3>🍽️ Paso 3: Selección de Servicios</h3>
             <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="mozos" onchange="toggleMozos()">
                 <label class="form-check-label" for="mozos"> 👨‍🍳 Mozos</label>
@@ -369,10 +369,13 @@
             const adelanto = (precioTotal * 0.6).toFixed(2);
             const restante = (precioTotal - adelanto).toFixed(2);
 
-            let mensaje = `Ya está lista tu cotización, ${nombre}:\n\n`;
+            let mensaje = `Cotización para ${nombre}:\n\n`;
             mensaje += `📅 Fecha del evento: ${fecha}\n`;
             mensaje += `⏰ Hora del evento: ${hora}\n`;
             mensaje += `📍 Lugar del evento: ${lugar}\n`;
+            mensaje += `Número de personas: ${personas}\n`;
+            mensaje += `💲 Precio por persona: S/${precioPorPersona}\n`;
+            mensaje += `💰 Costo total: S/${precioTotal}\n\n`;
             mensaje += `Servicios solicitados:\n`;
 
             if (document.getElementById('mozos').checked) {
@@ -437,10 +440,7 @@
                 }
             }
 
-            mensaje += `\nNúmero de personas: ${personas}\n`;
-            mensaje += `💲 Precio por persona: S/${precioPorPersona}\n`;
-            mensaje += `💰 Costo total de inversión: S/${precioTotal}\n`;
-            mensaje += `💵 Para reservar tu fecha, debes adelantar el 60%: S/${adelanto}\n`;
+            mensaje += `\n💵 Para reservar tu fecha, debes adelantar el 60%: S/${adelanto}\n`;
             mensaje += `🔔 El restante (S/${restante}) se cancela el día del evento.\n`;
             mensaje += `✨ Puedes realizar el adelanto mediante Yape al 972480092. ¡Gracias por tu confianza!\n\n`;
 
