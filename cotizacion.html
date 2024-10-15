@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Cotización de Buffet y Catering</title>
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="js/scripts.js" defer></script>
+</head>
+<body>
+    <div class="logo-wrapper">
+        <img src="assets/logo.png" alt="Logo" class="logo">
+    </div>
+    <div class="container">
+        <h2><i class="fas fa-pencil-alt"></i> Cotización de Buffet y Catering</h2>
+        <form id="cotizacionForm">
+            <h3>🗓️ Paso 1: Información del Evento</h3>
+            <div class="form-group">
+                <label for="nombre">Nombre del Cliente:</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required placeholder="Ej: Juan Pérez">
+            </div>
+            <div class="form-group">
+                <label for="fecha">📅 Fecha del Evento:</label>
+                <input type="date" class="form-control" id="fecha" name="fecha" required min="" onchange="validarFecha()">
+            </div>
+            <div class="form-group">
+                <label for="hora">⏰ Hora del Evento:</label>
+                <input type="time" class="form-control" id="hora" name="hora" required step="900">
+            </div>
+            <div class="form-group">
+                <label for="lugar">📍 Lugar del Evento:</label>
+                <input type="text" class="form-control" id="lugar" name="lugar" required placeholder="Ej: Restaurante ABC">
+            </div>
+
+            <h3>👥 Paso 2: Selección de Servicios</h3>
+            <h4>🍽️ Comida:</h4>
+            <div id="comidaDetails">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="entrada" onchange="toggleEntrada()">
+                    <label class="form-check-label" for="entrada"> Entrada</label>
+                </div>
+                <div id="entradaDetails" class="hidden">
+                    <label for="nombreEntrada">Nombre del Plato:</label>
+                    <input type="text" class="form-control" id="nombreEntrada" name="nombreEntrada" placeholder="Ej: Ensalada César">
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="segundoPlato" onchange="togglePlato()">
+                    <label class="form-check-label" for="segundoPlato"> Segundo Plato</label>
+                </div>
+                <div id="segundoPlatoDetails" class="hidden">
+                    <label for="nombreSegundoPlato">Nombre del Plato:</label>
+                    <input type="text" class="form-control" id="nombreSegundoPlato" name="nombreSegundoPlato" placeholder="Ej: Pollo a la Brasa">
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="postre" onchange="togglePostre()">
+                    <label class="form-check-label" for="postre"> Postre</label>
+                </div>
+                <div id="postreDetails" class="hidden">
+                    <label for="nombrePostre">Nombre del Postre:</label>
+                    <input type="text" class="form-control" id="nombrePostre" name="nombrePostre" placeholder="Ej: Tarta de Chocolate">
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="brindis" onchange="toggleBrindis()">
+                    <label class="form-check-label" for="brindis"> Brindis</label>
+                </div>
+                <div id="brindisDetails" class="hidden">
+                    <label for="nombreBrindis">Nombre del Cóctel:</label>
+                    <input type="text" class="form-control" id="nombreBrindis" name="nombreBrindis" placeholder="Ej: Sangría">
+                </div>
+            </div>
+
+            <h4>🥪 Bocaditos:</h4>
+            <div id="bocaditosDetails">
+                <div class="form-group">
+                    <label class="form-check-label">Cantidad de Tipos de Bocaditos:</label>
+                    <input type="number" class="form-control" id="cantidadTiposBocaditos" name="cantidadTiposBocaditos" min="1">
+                </div>
+                <button type="button" class="btn btn-warning" onclick="generarCamposBocaditos()">Agregar Bocaditos</button>
+                <div id="bocaditosGroup" class="bocaditos-group"></div>
+            </div>
+
+            <h4>🍽️ Vajilla:</h4>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="copas" onchange="toggleCantidad('copasCantidad')">
+                <label class="form-check-label" for="copas"> Copas</label>
+            </div>
+            <div id="copasCantidad" class="hidden">
+                <label>Cantidad:</label>
+                <input type="number" class="form-control" placeholder="Cantidad" min="1"><br>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="vasos" onchange="toggleCantidad('vasosCantidad')">
+                <label class="form-check-label" for="vasos"> Vasos</label>
+            </div>
+            <div id="vasosCantidad" class="hidden">
+                <label>Cantidad:</label>
+                <input type="number" class="form-control" placeholder="Cantidad" min="1"><br>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="platosEntrada" onchange="toggleCantidad('platosEntradaCantidad')">
+                <label class="form-check-label" for="platosEntrada"> Platos de Entrada</label>
+            </div>
+            <div id="platosEntradaCantidad" class="hidden">
+                <label>Cantidad:</label>
+                <input type="number" class="form-control" placeholder="Cantidad" min="1"><br>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="platosBase" onchange="toggleCantidad('platosBaseCantidad')">
+                <label class="form-check-label" for="platosBase"> Platos de Base</label>
+            </div>
+            <div id="platosBaseCantidad" class="hidden">
+                <label>Cantidad:</label>
+                <input type="number" class="form-control" placeholder="Cantidad" min="1"><br>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="servilletas" onchange="toggleCantidad('servilletasCantidad')">
+                <label class="form-check-label" for="servilletas"> Servilletas de Tela</label>
+            </div>
+            <div id="servilletasCantidad" class="hidden">
+                <label>Cantidad:</label>
+                <input type="number" class="form-control" placeholder="Cantidad" min="1"><br>
+                <label>Color de la Servilleta:</label>
+                <input type="text" class="form-control" placeholder="Color"><br>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="jarras" onchange="toggleCantidad('jarrasCantidad')">
+                <label class="form-check-label" for="jarras"> Jarras</label>
+            </div>
+            <div id="jarrasCantidad" class="hidden">
+                <label>Cantidad:</label>
+                <input type="number" class="form-control" placeholder="Cantidad" min="1"><br>
+            </div>
+
+            <h4>👨‍🍳 Atención:</h4>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="mozos" onchange="toggleMozos()">
+                <label class="form-check-label" for="mozos"> 👨‍🍳 Mozos</label>
+            </div>
+            <div id="mozosDetails" class="hidden">
+                <div class="form-group">
+                    <label for="cantidadMozos">Cantidad de Mozos:</label>
+                    <input type="number" class="form-control" id="cantidadMozos" name="cantidadMozos" min="1">
+                </div>
+                <div class="form-group">
+                    <label for="horasMozos">Horas requeridas:</label>
+                    <input type="number" class="form-control" id="horasMozos" name="horasMozos" min="1">
+                </div>
+            </div>
+
+            <h3>👥 Paso 3: Detalles de la Cotización</h3>
+            <div class="form-group">
+                <label for="personas">Número de Personas:</label>
+                <input type="number" class="form-control" id="personas" name="personas" required placeholder="Ej: 50" min="1">
+            </div>
+            <div class="form-group">
+                <label for="precioPorPersona">💲 Precio por Persona (S/):</label>
+                <input type="number" class="form-control" id="precioPorPersona" name="precioPorPersona" placeholder="Ej: 50" min="1">
+            </div>
+            <button type="button" class="btn" onclick="calcularTotal()">💵 Calcular Precio Total</button>
+
+            <div class="form-group">
+                <label for="precioTotal">💰 Precio Total (S/):</label>
+                <input type="text" class="form-control" id="precioTotal" name="precioTotal" readonly>
+            </div>
+
+            <button type="button" class="btn btn-success" onclick="generarCotizacion()">Generar Cotización</button>
+
+            <div id="preview" class="preview hidden">
+                <h3>Vista Previa de la Cotización</h3>
+                <pre id="cotizacionTexto"></pre>
+                <button type="button" class="btn btn-info" onclick="copiarCotizacion()">📋 Copiar Cotización</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
