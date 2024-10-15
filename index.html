@@ -12,6 +12,7 @@
         body {
             background-color: #4B0082; /* Fondo morado oscuro */
             color: #ffffff;
+            font-family: 'Arial', sans-serif;
         }
         .container {
             background-color: #ffffff;
@@ -34,9 +35,14 @@
         label {
             font-weight: bold;
         }
-        input[type="text"], input[type="number"], input[type="date"], input[type="time"] {
+        input[type="text"], input[type="number"], input[type="date"], input[type="time"], select {
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus, input[type="number"]:focus, input[type="date"]:focus, input[type="time"]:focus, select:focus {
+            border-color: #FFA500; /* Naranja en foco */
+            outline: none;
         }
         input[type="checkbox"] {
             transform: scale(1.5);
@@ -54,9 +60,6 @@
         .hidden {
             display: none;
         }
-        .tooltip-inner {
-            background-color: #4B0082;
-        }
         .preview {
             margin-top: 20px;
             padding: 15px;
@@ -64,13 +67,35 @@
             border-radius: 8px;
             border: 1px solid #4B0082;
         }
+        .progress {
+            height: 20px;
+            margin-bottom: 20px;
+        }
+        .theme-toggle {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
         <h2><i class="fas fa-pencil-alt"></i> Cotización de Buffet y Catering</h2>
-    
+        
+        <div class="theme-toggle">
+            <label for="themeSelect">Selecciona el tema:</label>
+            <select id="themeSelect" onchange="changeTheme()">
+                <option value="default">Por defecto</option>
+                <option value="dark">Oscuro</option>
+                <option value="light">Claro</option>
+            </select>
+        </div>
+
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" id="progressBar" style="width: 0%">Paso 1 de 3</div>
+        </div>
+
         <form id="cotizacionForm">
             <h3>🗓️ Paso 1: Información del Evento</h3>
             <div class="form-group">
@@ -250,6 +275,22 @@
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('fecha').setAttribute('min', today);
 
+        function changeTheme() {
+            const theme = document.getElementById('themeSelect').value;
+            const body = document.body;
+
+            if (theme === "dark") {
+                body.style.backgroundColor = "#333";
+                body.style.color = "#fff";
+            } else if (theme === "light") {
+                body.style.backgroundColor = "#f8f9fa";
+                body.style.color = "#333";
+            } else {
+                body.style.backgroundColor = "#4B0082"; /* Volver a fondo original */
+                body.style.color = "#fff";
+            }
+        }
+
         function toggleMozos() {
             const mozosDetails = document.getElementById('mozosDetails');
             mozosDetails.classList.toggle('hidden', !document.getElementById('mozos').checked);
@@ -310,12 +351,6 @@
         function calcularTotal() {
             const personas = document.getElementById('personas').value;
             const precioPorPersona = document.getElementById('precioPorPersona').value;
-
-            // Validar campos antes de calcular
-            if (!personas || !precioPorPersona) {
-                alert("Por favor, complete los campos de Número de Personas y Precio por Persona.");
-                return;
-            }
 
             const precioTotal = personas * precioPorPersona;
             document.getElementById('precioTotal').value = precioTotal || 0;
