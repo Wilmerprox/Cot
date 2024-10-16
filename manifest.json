@@ -3,11 +3,11 @@
     "short_name": "Cotización",
     "start_url": "index.html",
     "display": "standalone",
-    "background_color": "#4B0082",
+    "background_color": "#ffffff",
     "theme_color": "#4B0082",
     "icons": [
         {
-            "src": "assets/icon.png",
+            "src": "assets/icon.png", // Usa el nuevo icono
             "sizes": "192x192",
             "type": "image/png"
         }

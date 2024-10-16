@@ -6,7 +6,9 @@ self.addEventListener('install', (event) => {
                 'cotizacion.html',
                 'css/styles.css',
                 'js/scripts.js',
-                'assets/icon.png' // Asegúrate de tener un ícono en la carpeta de assets
+                'assets/logo.png', // Tu logo original
+                'assets/icon.png',  // Nuevo icono de 192x192px
+                'manifest.json', // Archivo de manifiesto
             ]);
         })
     );
