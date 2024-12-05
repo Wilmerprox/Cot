@@ -1,5 +1,30 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video, input{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    text-decoration: none;
+}
+
+/*reset*/
+
+
 body {
-    background-color: #fff; /* Fondo blanco */
+    background-color: #181818; /* Fondo blanco */
     color: #333; /* Color de texto más oscuro */
     font-family: 'Arial', sans-serif;
     margin: 0; /* Elimina el margen por defecto */
@@ -9,6 +34,7 @@ body {
 
 .main-container {
     display: flex;
+    text-align: center;
     flex-direction: column; /* Alineación vertical */
     justify-content: flex-start; /* Alineación superior */
     align-items: center; /* Centrar horizontalmente */
@@ -27,6 +53,7 @@ body {
 }
 
 .container {
+    display: block;
     background-color: #2c2c54; /* Fondo oscuro para la app */
     color: #ffffff;
     padding: 20px; /* Espacio interno */
@@ -34,6 +61,7 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     max-width: 90%; /* Ancho máximo del contenedor */
     margin: 0 auto; /* Centrado horizontal */
+    width: 100%;
 }
 
 h1 {
@@ -48,12 +76,14 @@ p {
 
 .btn {
     display: inline-block; /* Mostrar como bloque en línea */
-    background-color: #FFA500; /* Naranja */
+    background-color: #ff4e00; /* Naranja */
+    width: 90%; /* Ancho completo */
     color: #ffffff;
     padding: 15px 30px; /* Espacio interno del botón */
     font-size: 1.2rem; /* Tamaño de fuente */
     border-radius: 8px; /* Bordes redondeados */
     text-decoration: none; /* Sin subrayado */
+    text-align: center;
     transition: background-color 0.3s, transform 0.3s; /* Efectos de transición */
     margin-top: 10px; /* Espacio arriba del botón */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra sutil */
@@ -62,10 +92,12 @@ p {
 .btn:hover {
     background-color: #e68a00; /* Naranja más oscuro en hover */
     transform: translateY(-2px); /* Elevación del botón */
+
 }
 
 /* Estilos para la cotización */
 .cotizacion-container {
+    display: block;
     background-color: #2c2c54; /* Fondo oscuro para el formulario */
     color: #ffffff;
     padding: 20px; /* Espacio interno */
@@ -73,6 +105,7 @@ p {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     max-width: 90%; /* Ancho máximo del contenedor */
     margin: 20px auto; /* Centrado vertical y horizontal */
+    width: 100%;
 }
 
 h2 {
@@ -128,6 +161,7 @@ button {
     border: none; /* Sin borde */
     border-radius: 8px; /* Bordes redondeados */
     cursor: pointer; /* Cambiar cursor a mano */
+
 }
 
 button:hover {
@@ -169,3 +203,53 @@ button:hover {
         font-size: 1rem; /* Tamaño de fuente del botón para móviles */
     }
 }
+h1{
+    text-align: center;
+}
+
+
+/* Resto de tu CSS */
+
+.container {
+    display: block;
+    background-color: #2c2c54; /* Fondo oscuro para la app */
+    color: #ffffff;
+    padding: 20px; /* Espacio interno */
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    max-width: 90%; /* Ancho máximo del contenedor */
+    margin: 0 auto; /* Centrado horizontal */
+    width: 100%;
+}
+
+/* Asegúrate de que los botones ocupen todo el espacio */
+.button-container {
+    display: flex;
+    flex-direction: column; /* Alineación vertical */
+    align-items: stretch; /* Asegura que los botones ocupen todo el ancho */
+}
+
+.btn {
+    background-color: #ff4e00; /* Naranja */
+    color: #ffffff;
+    padding: 15px 0; /* Espacio interno del botón ajustado */
+    font-size: 1.2rem; /* Tamaño de fuente */
+    border-radius: 8px; /* Bordes redondeados */
+    text-decoration: none; /* Sin subrayado */
+    text-align: center;
+    transition: background-color 0.3s, transform 0.3s; /* Efectos de transición */
+    margin-top: 10px; /* Espacio arriba del botón */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+    width: 100%; /* Asegura que el botón ocupe todo el ancho */
+}
+
+.btn:hover {
+    background-color: #e68a00; /* Naranja más oscuro en hover */
+    transform: translateY(-2px); /* Elevación del botón */
+}
+
+
+.preview{
+    color:#000;
+}
+/* ... Resto de tu CSS */
