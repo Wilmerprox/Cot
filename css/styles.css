@@ -251,5 +251,13 @@ h1{
 
 .preview{
     color:#000;
+    width: 100%; /* Ajusta el ancho del contenedor */
+  border: 1px solid #000; /* Para ver el contenedor */
+  padding: 10px;
+  box-sizing: border-box; /* Incluye padding y borde dentro del ancho */
+  word-break: break-word; /* Rompe palabras largas */
+  overflow-wrap: break-word; /* Asegura que las palabras se ajusten */
+  white-space: normal; /* Permite que el texto haga saltos de línea */
+  overflow: hidden; 
 }
 /* ... Resto de tu CSS */

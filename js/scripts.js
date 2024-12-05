@@ -147,9 +147,9 @@ function generarCotizacion() {
     cotizacionTexto += `\nNúmero de personas: ${personas}\n`;
     cotizacionTexto += `💲 Precio por persona: S/${precioPorPersona.toFixed(2)}\n`;
     cotizacionTexto += `💰 Costo total de inversión: S/${precioTotal.toFixed(2)}\n`;
-    cotizacionTexto += `💵 Para asegurar su fecha especial, le invitamos a realizar un adelanto del 60%: S/${adelanto}\n`;
-    cotizacionTexto += `🔔 El restante (S/${restante}) se podrá cancelar el día del evento.\n`;
-    cotizacionTexto += `🌟 Estamos emocionados de ser parte de su celebración y queremos hacer de su evento un momento inolvidable. ¡Contáctenos y reserve su fecha ahora mismo! 💖\n`;
+    cotizacionTexto += `💵 Para asegurar su fecha especial, \n y reservar el día, le invitamos a realizar\n un adelanto del 60%: S/${adelanto}\n`;
+    cotizacionTexto += `🔔 El monto restante (S/${restante}) \n se podrá cancelar el día del evento.\n`;
+    cotizacionTexto += `🌟 Estamos emocionados de ser parte \nde su celebración y queremos hacer\n de su evento un momento inolvidable. \n`;
 
     const preview = document.getElementById('cotizacionTexto');
     preview.textContent = cotizacionTexto;
